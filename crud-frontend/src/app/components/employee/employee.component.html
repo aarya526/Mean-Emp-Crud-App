@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col s12 m12">
+        <div class="card grey lighten-5">
+            <div class="card-content black-text">
+                <div class="row">
+                    <div class="col m5">
+                        <h4>Add/Update Employee</h4>
+                        <form #employeeForm (submit)="onSubmit(employeeForm)">
+                            <input type="hidden" name="selectedEmployee._id" [(ngModel)]="selectedEmployee._id" />
+                            <div class="input-field col s12">
+                                <input placeholder="Enter Full Name" type="text" class="validate"
+                                    name="selectedEmployee.name" [(ngModel)]="selectedEmployee.name" #name="ngModel"
+                                    required>
+                                <label>Name</label>
+                                <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                                    <div *ngIf="name.errors?.required" class="error">
+                                        Name is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <input placeholder="Enter Position" type="text" class="validate"
+                                    name="selectedEmployee.position" [(ngModel)]="selectedEmployee.position"
+                                    #position="ngModel" required>
+                                <label>Position</label>
+                                <div *ngIf="position.invalid && (position.dirty || position.touched)">
+                                    <div *ngIf="position.errors?.required" class="error">
+                                        Position is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <input placeholder="Enter Office" type="text" class="validate"
+                                    name="selectedEmployee.office" [(ngModel)]="selectedEmployee.office"
+                                    #office="ngModel" required>
+                                <label>Office</label>
+                                <div *ngIf="office.invalid && (office.dirty || office.touched)">
+                                    <div *ngIf="office.errors?.required" class="error">
+                                        Office is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <input placeholder="Enter Salary" type="number" class="validate"
+                                    name="selectedEmployee.salary" [(ngModel)]="selectedEmployee.salary"
+                                    #salary="ngModel" required>
+                                <label>Salary</label>
+                                <div *ngIf="salary.invalid && (salary.dirty || salary.touched)">
+                                    <div *ngIf="salary.errors?.required" class="error">
+                                        Salary is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="input-field col s12">
+                                <button class="btn waves-effect waves-light"
+                                    [disabled]="name.errors?.required || office.errors?.required || position.errors?.required || salary.errors?.required"
+                                    style="margin-right: 20px;" type="submit">Submit
+                                </button>
+                                <button class="btn waves-effect pink" type="button"
+                                    (click)="resetForm(employeeForm)">Reset
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col m7">
+                        <h4>Existing Employees</h4>
+                        <table class="responsive-table highlight">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Salary</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let e of employeesList">
+                                    <td>{{e.name}}</td>
+                                    <td>{{e.position}}</td>
+                                    <td>{{e.office}}</td>
+                                    <td>{{e.salary}}</td>
+                                    <td><a class="action-btn" (click)="editEmployee(e)" style="color: #283593 ;"><i
+                                                class="material-icons">create</i></a><a class="action-btn"
+                                            style="color:#263238;" (click)="deleteEmployee(e._id)"><i
+                                                class=" material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

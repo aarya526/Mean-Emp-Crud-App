@@ -1,0 +1,10 @@
+const bodyParser = require("body-parser");
+const express = require("express");
+const cors = require("cors");
+const { mongoose } = require("./db.js");
+var empController = require("./controller/employeeController.js");
+var app = express();
+app.use(cors());
+app.use(bodyParser.json());
+app.listen(3000, () => console.log("Server Started at Port : 3000"));
+app.use("/employee", empController);
