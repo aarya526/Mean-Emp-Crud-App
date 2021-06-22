@@ -6,7 +6,7 @@ import { Employee } from '../common/employee';
   providedIn: 'root',
 })
 export class EmployeeService {
-  url: string = 'http://localhost:3000/employee';
+  url: string = '/employee';
   constructor(private http: HttpClient) {}
 
   getAllEmployees() {
